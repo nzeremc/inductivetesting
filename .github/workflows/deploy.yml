@@ -38,6 +38,6 @@ jobs:
 
     - name: Terraform apply
       id: apply
-      run: terraform apply -no-color -auto-approve
+      run: terraform destroy -no-color -auto-approve
       continue-on-error: true
     
