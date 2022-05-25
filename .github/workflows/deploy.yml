@@ -43,9 +43,8 @@ jobs:
 
     - name: Terraform apply
       id: apply
-      run: terraform destroy -no-color -auto-approve
+      run: terraform apply -no-color -auto-approve
       continue-on-error: true
-<<<<<<< HEAD
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -53,6 +52,3 @@ jobs:
         role-to-assume: arn:aws:iam::088458270492:role/oidc-Role-E9RV8EBM2X7O
         aws-region: us-east-1  
     
-=======
-    
->>>>>>> 62cffa7d362eab6e350315dd9016124597976ddb
