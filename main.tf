@@ -62,7 +62,7 @@ data "aws_ami" "Ubuntu" {
 module "ec2" {
   source                      = "./modules/ec2"
   name                        = var.ec2_name
-  ami                         = data.aws_ami.amazon_linux.id
+  ami                         = data.aws_ami.Ubuntu.id
   instance_type               = var.instance_type
 #   availability_zone           = "ap-south-1a"
   subnet_id                   = module.network.public_subnet_ids[0]
