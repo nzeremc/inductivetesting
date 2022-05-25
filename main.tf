@@ -48,7 +48,7 @@ resource "aws_security_group" "app_sg" {
   ]
 }
 
-data "aws_ami" "amazon_linux" {
+data "aws_ami" "Ubuntu" {
   most_recent = true
   owners      = ["amazon"]
 
