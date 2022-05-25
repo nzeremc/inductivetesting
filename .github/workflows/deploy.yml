@@ -54,6 +54,6 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: arn:aws:iam::088458270492:role/oidc-Role-E9RV8EBM2X7O
+        role-to-assume: arn:aws:iam::693703879660:role/OpenIDRole-Role-1BBDUVARH6ZJ
         aws-region: us-east-1 
     
