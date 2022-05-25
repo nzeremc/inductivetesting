@@ -46,10 +46,10 @@ jobs:
       run: terraform apply -no-color -auto-approve
       continue-on-error: true
 
-    - name: Terraform destroy
-      id: destroy
-      run: terraform destroy -no-color -auto-approve
-      continue-on-error: true  
+    # - name: Terraform destroy
+    #   id: destroy
+    #   run: terraform destroy -no-color -auto-approve
+    #   continue-on-error: true  
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
