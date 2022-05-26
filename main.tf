@@ -221,3 +221,78 @@ module "db" {
     Environment = "dev"
   }
 }
+
+######################## ALB #############################
+module "alb" {
+  source             = "./modules/alb"
+  name               = "load-balancer"
+  load_balancer_type = "application"
+  vpc_id             = module.network.vpc_id
+  security_groups    = [module.network.public_web_dmz_sg]
+  subnets            = module.network.public_subnet_ids
+  http_tcp_listeners = [
+    # Forward action is default, either when defined or undefined
+    {
+      port               = 80
+      protocol           = "HTTP"
+      target_group_index = 0
+      # action_type        = "forward"
+    },
+    # {
+    #   port        = 81
+    #   protocol    = "HTTP"
+    #   action_type = "redirect"
+    #   redirect = {
+    #     port        = "443"
+    #     protocol    = "HTTPS"
+    #     status_code = "HTTP_301"
+    #   }
+    # },
+    # {
+    #   port        = 82
+    #   protocol    = "HTTP"
+    #   action_type = "fixed-response"
+    #   fixed_response = {
+    #     content_type = "text/plain"
+    #     message_body = "Fixed message"
+    #     status_code  = "200"
+    #   }
+    # },
+  ]
+
+  target_groups = [
+    {
+      name_prefix          = "h1"
+      backend_protocol     = "HTTP"
+      backend_port         = 80
+      target_type          = "instance"
+      deregistration_delay = 10
+      # health_check = {
+      #   enabled             = true
+      #   interval            = 30
+      #   path                = "/health"
+      #   port                = "traffic-port"
+      #   healthy_threshold   = 3
+      #   unhealthy_threshold = 3
+      #   timeout             = 6
+      #   protocol            = "HTTP"
+      #   matcher             = "200-399"
+      # }
+      protocol_version = "HTTP1"
+      targets = {
+        my_ec2 = {
+          target_id = module.ec2.id
+          port      = 80
+        },
+        my_ec2_again = {
+          target_id = module.ec2.id
+          port      = 8080
+        }
+      }
+    }
+  ]
+
+  tags = {
+    Name = "load-balancer"
+  }
+}
