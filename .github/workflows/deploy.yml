@@ -22,9 +22,8 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+        role-to-assume: arn:aws:iam::865185021418:role/IAMROLE_GITHUB
+        aws-region: us-east-1 
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
@@ -46,14 +45,13 @@ jobs:
       run: terraform apply -no-color -auto-approve
       continue-on-error: true
 
-    - name: Terraform destroy
-      id: destroy
-      run: terraform destroy -no-color -auto-approve
-      continue-on-error: true
+    # - name: Terraform destroy
+    #   id: destroy
+    #   run: terraform destroy -no-color -auto-approve
+    #   continue-on-error: true  
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: arn:aws:iam::088458270492:role/oidc-Role-E9RV8EBM2X7O
+        role-to-assume: arn:aws:iam::865185021418:role/IAMROLE_GITHUB
         aws-region: us-east-1 
-    
