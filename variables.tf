@@ -26,7 +26,7 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-  default = "t3large"
+  default = "demo"
 }
 
 variable "associate_public_ip_address" {
