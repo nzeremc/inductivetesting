@@ -5,7 +5,7 @@ on:
   pull_request:
   workflow_dispatch:
 
-# permission can be added at job level or workflow level    
+# permission can be added at job level or workflow    
 permissions:
       id-token: write
       contents: read
