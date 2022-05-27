@@ -22,7 +22,7 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
+        role-to-assume: arn:aws:iam::865185021418:role/IAMROLE_GITHUB
         aws-region: us-east-1 
 
     - name: Setup Terraform
@@ -53,5 +53,5 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
+        role-to-assume: arn:aws:iam::865185021418:role/IAMROLE_GITHUB
         aws-region: us-east-1 
